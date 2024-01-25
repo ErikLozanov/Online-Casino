@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
+
+    const {isAuthenticated} = useAuthContext();
+
     return (
         <div className="header-top">
             <div className="header">
@@ -27,26 +31,38 @@ export default function Header() {
                                                 <Link to="/about-us">About</Link>
                                             </li>
                                             <li>
-                                                <a href="#casino">Casino</a>
+                                                <a href="#casino">Roulette</a>
                                             </li>
                                             <li>
                                                 <a href="#testimonial">
-                                                    Testimonial
+                                                    Slots
                                                 </a>
                                             </li>
                                             <li>
+                                                <Link to="/contact-us">
+                                                    Contact Us
+                                                </Link>
+                                            </li>
+                                            {isAuthenticated ?                                             <li>
                                                 <a href="#booktable">
-                                                    Book Table
+                                                    Logout
                                                 </a>
-                                            </li>
-                                            <li className="mean-last">
-                                                <a href="#">
-                                                    <img
-                                                        src="assets/images/search_icon.png"
-                                                        alt="#"
-                                                    />
-                                                </a>
-                                            </li>
+                                            </li> : 
+                                            <>
+                                            <li>
+                                            <a href="#booktable">
+                                                Log In
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#booktable">
+                                                Sign Up
+                                            </a>
+                                        </li>
+                                            </>
+                                            }
+                                            
+
                                         </ul>
                                     </nav>
                                 </div>
