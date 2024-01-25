@@ -8,8 +8,8 @@ interface AuthProviderProps {
 }
 
 interface AuthContextProps {
-    onLoginSubmit: (email: string, password: string) => Promise<void>;
-    onRegisterSubmit: (username: string, email: string, password: string, repeatPassword: string) => Promise<void>;
+    onLoginSubmit: (email: string, password: string) => Promise<boolean>;
+    onRegisterSubmit: (username: string, email: string, password: string, repeatPassword: string) => Promise<boolean>;
     onLogout: () => Promise<void>;
     userId: string;
     token: string;
@@ -29,19 +29,24 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     const [registerError, setRegisterError] = useState<string>("");
     const [auth, setAuth] = useSessionStorage("auth", {});
     const navigate = useNavigate();
-
-    const onLoginSubmit = async (email: string, password: string): Promise<void> => {
+    
+    
+    const onLoginSubmit = async (email: string, password: string): Promise<boolean> => {
+        console.log(email, password);
+        
         try {
             const result = await login(email, password);
 
             setAuth(result);
-
             navigate("/");
+            return false;
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setLoginError(error.message);
+                return true;
             } else {
                 setLoginError("An unknown error occurred");
+                return false;
             }
         }
     };
@@ -51,18 +56,18 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         email: string,
         password: string,
         repeatPassword: string
-    ): Promise<void> => {
+    ): Promise<boolean> => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const isValidEmail = emailRegex.test(email);
 
         if (!isValidEmail) {
             setRegisterError("Invalid email!");
-            return;
+            return false;
         }
 
         if (repeatPassword !== password) {
             setRegisterError("Passwords mismatch!");
-            return;
+            return false;
         }
 
         try {
@@ -71,11 +76,17 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             setAuth(result);
 
             navigate("/");
+            return true;
+
         } catch (error) {
             if (error instanceof Error) {
                 setLoginError(error.message);
+            return false;
+
             } else {
                 setLoginError("An unknown error occurred");
+            return false;
+
             }
         }
     };
@@ -90,17 +101,17 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         onLoginSubmit,
         onRegisterSubmit,
         onLogout,
-        userId: auth._id || '', 
-        token: auth.accessToken || '', 
-        userEmail: auth.email || '', 
-        username: auth.username || '', 
+        userId: auth._id, 
+        token: auth.accessToken, 
+        userEmail: auth.email, 
+        username: auth.username, 
         isAuthenticated: !!auth.accessToken,
         loginError,
         setLoginError,
         registerError,
         setRegisterError,
     };
-
+    
     return (
         <AuthContext.Provider value={contextValues}>
             {children}
