@@ -46,9 +46,9 @@ export default function Header() {
                                             </li>
                                             {isAuthenticated ? (
                                                 <li>
-                                                    <a href="#booktable">
+                                                    <Link to="/users/logout">
                                                         Logout
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ) : (
                                                 <>
