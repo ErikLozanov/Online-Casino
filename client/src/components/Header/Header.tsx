@@ -58,9 +58,9 @@ export default function Header() {
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <a href="#booktable">
+                                                        <Link to="/users/register">
                                                             Sign Up
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                 </>
                                             )}
