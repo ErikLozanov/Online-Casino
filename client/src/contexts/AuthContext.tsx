@@ -32,7 +32,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     
     
     const onLoginSubmit = async (email: string, password: string): Promise<boolean> => {
-        console.log(email, password);
         
         try {
             const result = await login(email, password);
