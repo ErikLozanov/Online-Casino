@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import AuthProvider from "./contexts/AuthContext";
 import Logout from "./components/Logout/Logout";
+import RouletteGame from "./components/RouletteGame/RouletteGame";
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
         <Route path="/users/login" element={<Login />} />
         <Route path="/users/register" element={<Register />} />
         <Route path="/users/logout" element={<Logout />} />
+        <Route path="/games/roulette" element={<RouletteGame />} />
        </Routes>
       <Footer />
       </AuthProvider>

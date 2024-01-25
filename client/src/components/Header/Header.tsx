@@ -34,7 +34,7 @@ export default function Header() {
                                                 </Link>
                                             </li>
                                             <li>
-                                                <a href="#casino">Roulette</a>
+                                                <Link to="/games/roulette">Roulette</Link>
                                             </li>
                                             <li>
                                                 <a href="#testimonial">Slots</a>
