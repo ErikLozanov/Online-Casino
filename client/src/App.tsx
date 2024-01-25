@@ -6,11 +6,14 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import ContactUs from "./components/ContactUs/ContactUs";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import AuthProvider from "./contexts/AuthContext";
+import Logout from "./components/Logout/Logout";
 
 function App() {
   
   return (
     <>
+      <AuthProvider>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -18,8 +21,10 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />}/>
         <Route path="/users/login" element={<Login />} />
         <Route path="/users/register" element={<Register />} />
+        <Route path="/users/logout" element={<Logout />} />
        </Routes>
       <Footer />
+      </AuthProvider>
     </>
   )
 }
