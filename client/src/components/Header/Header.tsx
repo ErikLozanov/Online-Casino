@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
-
-    const {isAuthenticated} = useAuthContext();
+    const { isAuthenticated } = useAuthContext();
 
     return (
         <div className="header-top">
@@ -14,7 +13,9 @@ export default function Header() {
                             <div className="full">
                                 <div className="center-desk">
                                     <div className="logo">
-                                        <h3 id="header-logo-title">Casino Royale</h3>
+                                        <h3 id="header-logo-title">
+                                            Casino Royale
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -28,41 +29,41 @@ export default function Header() {
                                                 <Link to="/">Home</Link>
                                             </li>
                                             <li>
-                                                <Link to="/about-us">About</Link>
+                                                <Link to="/about-us">
+                                                    About
+                                                </Link>
                                             </li>
                                             <li>
                                                 <a href="#casino">Roulette</a>
                                             </li>
                                             <li>
-                                                <a href="#testimonial">
-                                                    Slots
-                                                </a>
+                                                <a href="#testimonial">Slots</a>
                                             </li>
                                             <li>
                                                 <Link to="/contact-us">
                                                     Contact Us
                                                 </Link>
                                             </li>
-                                            {isAuthenticated ?                                             <li>
-                                                <a href="#booktable">
-                                                    Logout
-                                                </a>
-                                            </li> : 
-                                            <>
-                                            <li>
-                                            <a href="#booktable">
-                                                Log In
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#booktable">
-                                                Sign Up
-                                            </a>
-                                        </li>
-                                            </>
-                                            }
-                                            
-
+                                            {isAuthenticated ? (
+                                                <li>
+                                                    <a href="#booktable">
+                                                        Logout
+                                                    </a>
+                                                </li>
+                                            ) : (
+                                                <>
+                                                    <li>
+                                                        <Link to="/users/login">
+                                                            Log In
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#booktable">
+                                                            Sign Up
+                                                        </a>
+                                                    </li>
+                                                </>
+                                            )}
                                         </ul>
                                     </nav>
                                 </div>
