@@ -83,7 +83,7 @@ const RouletteGame = () => {
     <div className='roulette-main'>
       <Wheel
         innerRadius={10}
-        innerBorderColor='red'
+        innerBorderColor='black'
         innerBorderWidth={10}
         radiusLineColor='black'
         radiusLineWidth={4}
