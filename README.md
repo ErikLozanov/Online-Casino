@@ -22,4 +22,5 @@ Stay tuned for further updates as the project progresses!
 
 ![HomePage](https://github.com/ErikLozanov/Online-Casino/assets/122800063/13174783-597b-4e35-a058-05becd92741d)
 ![RegisterForm](https://github.com/ErikLozanov/Online-Casino/assets/122800063/51f80ee1-4f2c-476c-9eb6-7680902cda52)
-![Roulette](https://github.com/ErikLozanov/Online-Casino/assets/122800063/952f4eb8-a719-4edf-9a00-511751e720fe)
+![Capture](https://github.com/ErikLozanov/Online-Casino/assets/122800063/d7e0abd9-5ad2-456e-9c53-871473b5d720)
+
