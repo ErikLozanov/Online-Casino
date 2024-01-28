@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Wheel } from 'react-custom-roulette'
 import { ImageProps, StyleType } from 'react-custom-roulette/dist/components/Wheel/types';
 
@@ -7,7 +7,7 @@ interface WheelData {
     image?: ImageProps;
     style?: StyleType; // Optional
     optionSize?: number; // Optional
-  }
+  };
 
 const data = [
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
@@ -19,30 +19,36 @@ const data = [
     { option: '3', style: { backgroundColor: 'green', textColor: 'black' } },
     { option: '5', style: { backgroundColor: 'blue', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
-    { option: '10', style: {textColor: 'black' } },
+    { option: '10', style: { backgroundColor: 'purple', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
     { option: '3', style: { backgroundColor: 'green', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
-    { option: '1',src: {}, style: { backgroundColor: 'yellow', textColor: 'black' } },
+    { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
     { option: '20', style: { backgroundColor: 'red', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
     { option: '3', style: { backgroundColor: 'green', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
     { option: '10', style: { backgroundColor: 'purple', textColor: 'black' } },
     { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
+    { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
+    { option: '5', style: { backgroundColor: 'blue', textColor: 'black' } },
+    { option: '1', style: { backgroundColor: 'yellow', textColor: 'black' } },
 
   ]
 
+  console.log(data.length);
+  
 const RouletteGame = () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
-  const handleSpinClick = () => {
+  const handleSpinClick = (generatedNumber: number) => {
     if (!mustSpin) {
-      const newPrizeNumber = Math.floor(Math.random() * data.length);
-      setPrizeNumber(newPrizeNumber);
+      // const newPrizeNumber = Math.floor(Math.random() * data.length);
+      setPrizeNumber(generatedNumber);
       setMustSpin(true);
+      console.log(data[generatedNumber].option);
     }
   }
 
@@ -61,8 +67,8 @@ const RouletteGame = () => {
     // Add event listener for messages
     const handleMessage = (event: MessageEvent) => {
       // Handle incoming messages here
-      console.log('Received message:', event.data);
-      handleSpinClick();
+      console.log('Received price:', event.data);
+      handleSpinClick(event.data);
     };
 
     if (socket) {
@@ -81,22 +87,29 @@ const RouletteGame = () => {
 
   return (
     <div className='roulette-main'>
+    <div className='roulette-inner' >
       <Wheel
         innerRadius={10}
         innerBorderColor='black'
-        innerBorderWidth={10}
+        innerBorderWidth={5}
         radiusLineColor='black'
-        radiusLineWidth={4}
+        radiusLineWidth={2.5}
         spinDuration={1.5}
         mustStartSpinning={mustSpin}
         prizeNumber={prizeNumber}
         data={data}
-
+        fontSize={25}
+        perpendicularText={true}
+        textDistance={80}
+        // pointerProps={}
+        disableInitialAnimation={true}
         onStopSpinning={() => {
           setMustSpin(false);
         }}
-      />
+        />
     </div>
+    
+        </div>
   )
 }
 
