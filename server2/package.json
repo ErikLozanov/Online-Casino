@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "easytimer.js": "^4.6.0",
     "ws": "^8.16.0"
   }
 }
