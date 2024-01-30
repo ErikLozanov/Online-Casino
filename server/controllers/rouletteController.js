@@ -14,8 +14,8 @@ router.get('/roulette',async (req, res) => {
 
 router.post('/roulette/:num', async (req, res) => {
 
-    console.log(req.params);
-
     const num = await rouletteManager.addNumber(req.params)
+
+    return num;
 })
 
